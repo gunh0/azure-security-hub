@@ -1,0 +1,21 @@
+{
+    "Framework": "CIS",
+    "Version": "3.0.0",
+    "Provider": "Azure",
+    "Description": "This document, CIS Microsoft Azure Foundations Benchmark, provides prescriptive guidance for establishing a secure baseline configuration for Microsoft Azure. The scope of this benchmark is to establish the foundation level of security for anyone adopting Microsoft Azure cloud services. The benchmark is, however, not an exhaustive list of all possible security configurations and architecture. The benchmark should be understood as a starting point. Site-specific tailoring will almost certainly be required.",
+    "Requirements": [
+        {
+            "Id": "2.1.1",
+            "Description": "Ensure Security Defaults is enabled on Microsoft Entra ID",
+            "Checks": [],
+            "Attributes": [
+                {
+                    "Section1": "2 Identity",
+                    "Section2": "2.1 Security Defaults (Per-User MFA)",
+                    "AssessmentStatus": "Manual",
+                    "ApplicableProfiles": "Level 1"
+                }
+            ]
+        }
+    ]
+}
