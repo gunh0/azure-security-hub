@@ -1,0 +1,23 @@
+{
+    "Framework": "CIS",
+    "Version": "1.5.0",
+    "Provider": "Azure",
+    "Description": "This document, CIS Microsoft Azure Foundations Benchmark, provides prescriptive guidance for establishing a secure baseline configuration for Microsoft Azure. The scope of this benchmark is to establish the foundation level of security for anyone adopting Microsoft Azure cloud services. The benchmark is, however, not an exhaustive list of all possible security configurations and architecture. The benchmark should be understood as a starting point. Site-specific tailoring will almost certainly be required.",
+    "Requirements": [
+        {
+            "Id": "1.11",
+            "Title": "Ensure That 'Users Can Consent to Apps Accessing Company Data on Their Behalf' Is Set To 'Allow for Verified Publishers'",
+            "Checks": [],
+            "Attributes": [
+                {
+                    "Section1": "1 Identity and Access Management",
+                    "AssessmentStatus": "Manual",
+                    "ApplicableProfiles": "Level 2",
+                    "Description": "Allow users to provide consent for selected permissions when a request is coming from a verified publisher.",
+                    "RationaleStatement": "Unless Azure Active Directory is running as an identity provider for third-party applications, do not allow users to use their identity outside of the cloud environment. User profiles contain private information such as phone numbers and email addresses which could then be sold off to other third parties without requiring any further consent from the user.",
+                    "ImpactStatement": "Enforcing this setting may create additional requests that administrators need to fulfill quite often."
+                }
+            ]
+        }
+    ]
+}

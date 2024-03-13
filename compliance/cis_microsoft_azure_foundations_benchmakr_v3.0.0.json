@@ -6,7 +6,7 @@
     "Requirements": [
         {
             "Id": "2.1.1",
-            "Description": "Ensure Security Defaults is enabled on Microsoft Entra ID",
+            "Title": "Ensure Security Defaults is enabled on Microsoft Entra ID",
             "Checks": [],
             "Attributes": [
                 {
