@@ -16,6 +16,21 @@
                     "ApplicableProfiles": "Level 1"
                 }
             ]
+        },
+        {
+            "Id": "2.13",
+            "Title": "Ensure 'User consent for applications' Is Set To 'Allow for Verified Applications' (Manual)",
+            "Checks": [],
+            "Attributes": [
+                {
+                    "Section1": "2 Identity",
+                    "AssessmentStatus": "Manual",
+                    "ApplicableProfiles": "Level 2",
+                    "Description": "Allow users to provide consent for selected permissions when a request is coming from a verified publisher.",
+                    "RationaleStatement": "If Microsoft Entra ID is running as an identity provider for third-party applications, permissions and consent should be limited to administrators or pre-approved. Malicious applications may attempt to exfiltrate data or abuse privileged user accounts.",
+                    "ImpactStatement": "Enforcing this setting may create additional requests that administrators need to review."
+                }
+            ]
         }
     ]
 }
