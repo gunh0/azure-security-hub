@@ -1,3 +1,4 @@
+// utils/login.go
 package utils
 
 import (
@@ -13,11 +14,15 @@ import (
 
 // LoginAzure performs Azure authentication and returns a subscription client
 func LoginAzure() (*armsubscription.SubscriptionsClient, error) {
-	// Load .env file
-	envPath := filepath.Join("..", ".env")
-	err := godotenv.Load(envPath)
+	// Try to load .env file from current directory first
+	err := godotenv.Load()
 	if err != nil {
-		return nil, fmt.Errorf("error loading .env file: %v", err)
+		// If not found, try to load from parent directory
+		parentEnvPath := filepath.Join("..", ".env")
+		err = godotenv.Load(parentEnvPath)
+		if err != nil {
+			return nil, fmt.Errorf("error loading .env file: %v", err)
+		}
 	}
 
 	// Get credentials from environment variables
