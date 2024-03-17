@@ -3,8 +3,10 @@ package main
 import (
 	"context"
 	"fmt"
+	"log"
 	"os"
 
+	"azure-security-hub/audit/microsoftdefenderforcloud"
 	"azure-security-hub/utils"
 
 	"github.com/spf13/cobra"
@@ -48,15 +50,24 @@ var loginCmd = &cobra.Command{
 	},
 }
 
+var ensureAutoProvisioningLogAnalyticsAgentCmd = &cobra.Command{
+	Use:     "ensure-auto-provisioning-log-analytics-agent",
+	Short:   "Ensure Auto provisioning of 'Log Analytics agent for Azure VMs' is Set to 'On'",
+	Aliases: []string{"defender.3.1.1.1"},
+	Run: func(cmd *cobra.Command, args []string) {
+		result := microsoftdefenderforcloud.EnsureAutoProvisioningLogAnalyticsAgent()
+		log.Printf("[Microsoft Defender for Cloud] %s : %s", cmd.Short, result)
+	},
+}
+
 // init is called before the main function
 func init() {
-	// Add login command to the root command
 	rootCmd.AddCommand(loginCmd)
+	rootCmd.AddCommand(ensureAutoProvisioningLogAnalyticsAgentCmd)
 }
 
 // main is the entry point of the application
 func main() {
-	// Execute the root command
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Printf("[-] Error: %v\n", err)
 		os.Exit(1)

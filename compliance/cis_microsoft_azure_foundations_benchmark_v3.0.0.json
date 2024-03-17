@@ -31,6 +31,24 @@
                     "ImpactStatement": "Enforcing this setting may create additional requests that administrators need to review."
                 }
             ]
+        },
+        {
+            "Id": "3.1.1",
+            "Title": "Microsoft Cloud Security Posture Management (CSPM)",
+            "Checks": [],
+            "Attributes": [
+                {}
+            ]
+        },
+        {
+            "Id": "3.1.1.1",
+            "Title": "Ensure that Auto provisioning of 'Log Analytics agent for Azure VMs' is Set to 'On' (Automated)",
+            "Checks": [
+                "ensure-auto-provisioning-log-analytics-agent"
+            ],
+            "Attributes": [
+                {}
+            ]
         }
     ]
 }
