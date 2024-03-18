@@ -1,3 +1,4 @@
+// audit/microsoftdefenderforcloud/ensure_auto_provisioning_log_analytics_agent.go
 package microsoftdefenderforcloud
 
 import (

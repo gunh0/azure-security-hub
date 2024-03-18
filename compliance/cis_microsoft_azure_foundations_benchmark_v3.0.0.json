@@ -18,6 +18,16 @@
             ]
         },
         {
+            "Id": "2.3",
+            "Title": "Ensure that 'Restrict non-admin users from creating tenants' is set to 'Yes' (Automated)",
+            "Checks": [
+                "restrict_tenant_creation"
+            ],
+            "Attributes":[
+                {}
+            ]
+        },
+        {
             "Id": "2.13",
             "Title": "Ensure 'User consent for applications' Is Set To 'Allow for Verified Applications' (Manual)",
             "Checks": [],
