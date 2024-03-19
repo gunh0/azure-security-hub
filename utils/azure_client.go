@@ -34,9 +34,10 @@ func getAzureClient() (*AzureClient, error) {
 	tenantID := os.Getenv("AZURE_TENANT_ID")
 	clientID := os.Getenv("AZURE_CLIENT_ID")
 	clientSecret := os.Getenv("AZURE_CLIENT_SECRET")
+	subscriptionID := os.Getenv("AZURE_SUBSCRIPTION_ID") // Added line to get subscription ID
 
-	if tenantID == "" || clientID == "" || clientSecret == "" {
-		return nil, fmt.Errorf("[-] AZURE_TENANT_ID, AZURE_CLIENT_ID, or AZURE_CLIENT_SECRET is not set")
+	if tenantID == "" || clientID == "" || clientSecret == "" || subscriptionID == "" {
+		return nil, fmt.Errorf("[-] AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET, or AZURE_SUBSCRIPTION_ID is not set")
 	}
 
 	// Debug output (be careful with clientSecret)
@@ -53,24 +54,7 @@ func getAzureClient() (*AzureClient, error) {
 		return nil, fmt.Errorf("[-] Failed to create subscription client: %v", err)
 	}
 
-	var subscriptionID string
-	pager := subClient.NewListPager(nil)
-	for pager.More() {
-		page, err := pager.NextPage(context.Background())
-		if err != nil {
-			return nil, fmt.Errorf("[-] Failed to list subscriptions: %v", err)
-		}
-		for _, sub := range page.Value {
-			subscriptionID = *sub.SubscriptionID
-			fmt.Printf("[+] Found subscription: %s (%s)\n", *sub.DisplayName, *sub.SubscriptionID)
-			break // Just use the first subscription
-		}
-	}
-
-	if subscriptionID == "" {
-		return nil, fmt.Errorf("[-] No subscription found")
-	}
-
+	// Use the subscription ID from the environment variable
 	fmt.Printf("[+] Using subscription: %s\n", subscriptionID)
 
 	return &AzureClient{
