@@ -19,17 +19,20 @@
         },
         {
             "Id": "2.3",
-            "Title": "Ensure that 'Restrict non-admin users from creating tenants' is set to 'Yes' (Automated)",
+            "Title": "Ensure that 'Restrict non-admin users from creating tenants' is set to 'Yes'",
             "Checks": [
                 "restrict_tenant_creation"
             ],
-            "Attributes":[
-                {}
+            "Attributes": [
+                {
+                    "Section1": "2 Identity",
+                    "AssessmentStatus": "Automated"
+                }
             ]
         },
         {
             "Id": "2.13",
-            "Title": "Ensure 'User consent for applications' Is Set To 'Allow for Verified Applications' (Manual)",
+            "Title": "Ensure 'User consent for applications' Is Set To 'Allow for Verified Applications'",
             "Checks": [],
             "Attributes": [
                 {
@@ -43,21 +46,16 @@
             ]
         },
         {
-            "Id": "3.1.1",
-            "Title": "Microsoft Cloud Security Posture Management (CSPM)",
-            "Checks": [],
-            "Attributes": [
-                {}
-            ]
-        },
-        {
             "Id": "3.1.1.1",
             "Title": "Ensure that Auto provisioning of 'Log Analytics agent for Azure VMs' is Set to 'On' (Automated)",
             "Checks": [
                 "ensure-auto-provisioning-log-analytics-agent"
             ],
             "Attributes": [
-                {}
+                {
+                    "Section1": "3 Security",
+                    "Section2": "3.1 Microsoft Defender for Cloud"
+                }
             ]
         }
     ]

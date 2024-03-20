@@ -56,7 +56,7 @@ var loginCmd = &cobra.Command{
 var restrictTenantCreationCmd = &cobra.Command{
 	Use:     "restrict-tenant-creation",
 	Short:   "Ensure that 'Restrict non-admin users from creating tenants' is set to 'Yes'",
-	Aliases: []string{"identity.2.3"},
+	Aliases: []string{"cis.3.0.0-identity.2.3"},
 	Run: func(cmd *cobra.Command, args []string) {
 		result := microsoftentraid.EnsureTenantCreationRestricted()
 		log.Printf("[Microsoft Entra ID] %s : %s", cmd.Short, result)
@@ -66,7 +66,7 @@ var restrictTenantCreationCmd = &cobra.Command{
 var ensureAutoProvisioningLogAnalyticsAgentCmd = &cobra.Command{
 	Use:     "ensure-auto-provisioning-log-analytics-agent",
 	Short:   "Ensure Auto provisioning of 'Log Analytics agent for Azure VMs' is Set to 'On'",
-	Aliases: []string{"defender.3.1.1.1"},
+	Aliases: []string{"cis.3.0.0-security.3.1.1.1"},
 	Run: func(cmd *cobra.Command, args []string) {
 		result := microsoftdefenderforcloud.EnsureAutoProvisioningLogAnalyticsAgent()
 		log.Printf("[Microsoft Defender for Cloud] %s : %s", cmd.Short, result)
