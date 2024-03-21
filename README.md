@@ -10,6 +10,7 @@ Azure Security Hub is a CLI tool designed to inspect and monitor the security po
 
 - [x] 2.3 Ensure that 'Restrict non-admin users from creating tenants' is set to 'Yes'
 - (Manual) 2.13 Ensure 'User consent for applications' Is Set To 'Allow for Verified Applications'
+- [x] 2.14 Ensure That 'Users Can Register Application' Is Set to 'No'
 
 **3 Security**
 

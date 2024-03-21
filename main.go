@@ -51,14 +51,22 @@ var loginCmd = &cobra.Command{
 	},
 }
 
-// Not implemented yet
-// Permissions required
 var restrictTenantCreationCmd = &cobra.Command{
 	Use:     "restrict-tenant-creation",
 	Short:   "Ensure that 'Restrict non-admin users from creating tenants' is set to 'Yes'",
 	Aliases: []string{"cis.3.0.0-identity.2.3"},
 	Run: func(cmd *cobra.Command, args []string) {
 		result := microsoftentraid.EnsureTenantCreationRestricted()
+		log.Printf("[Microsoft Entra ID] %s : %s", cmd.Short, result)
+	},
+}
+
+var restrictAppRegistrationCmd = &cobra.Command{
+	Use:     "restrict-app-registration",
+	Short:   "Ensure That 'Users Can Register Application' Is Set to 'No'",
+	Aliases: []string{"cis.3.0.0-identity.2.14"},
+	Run: func(cmd *cobra.Command, args []string) {
+		result := microsoftentraid.EnsureAppRegistrationRestricted()
 		log.Printf("[Microsoft Entra ID] %s : %s", cmd.Short, result)
 	},
 }
@@ -76,8 +84,9 @@ var ensureAutoProvisioningLogAnalyticsAgentCmd = &cobra.Command{
 // init is called before the main function
 func init() {
 	rootCmd.AddCommand(loginCmd)
-	rootCmd.AddCommand(restrictTenantCreationCmd)
-	rootCmd.AddCommand(ensureAutoProvisioningLogAnalyticsAgentCmd)
+	rootCmd.AddCommand(restrictTenantCreationCmd)                  // 2.3
+	rootCmd.AddCommand(restrictAppRegistrationCmd)                 // 2.14
+	rootCmd.AddCommand(ensureAutoProvisioningLogAnalyticsAgentCmd) // 3.1.1.1
 }
 
 // main is the entry point of the application

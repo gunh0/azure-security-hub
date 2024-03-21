@@ -1,4 +1,5 @@
-// audit/microsoftentraid/restrict_tenant_creation.go
+// audit/microsoftentraid/restrict_app_registration.go
+
 package microsoftentraid
 
 import (
@@ -10,14 +11,14 @@ import (
 	msgraphsdk "github.com/microsoftgraph/msgraph-sdk-go"
 )
 
-func EnsureTenantCreationRestricted() string {
+func EnsureAppRegistrationRestricted() string {
 	// Load and print compliance info
 	compliance, err := utils.LoadComplianceData("compliance/cis_microsoft_azure_foundations_benchmark_v3.0.0.json")
 	if err != nil {
 		log.Printf("└─[ERROR] Error loading compliance data: %v", err)
 		return "NA"
 	}
-	utils.PrintComplianceInfo(compliance, "2.3")
+	utils.PrintComplianceInfo(compliance, "2.14")
 
 	// Get Azure client
 	azureClient, err := utils.GetAzureClient()
@@ -27,7 +28,8 @@ func EnsureTenantCreationRestricted() string {
 	}
 
 	log.Println("└─[*] Creating Microsoft Graph client")
-	// Create Graph client with credentials and required scope
+	// Create Graph client with required permissions
+	// Use .default scope for client credentials flow
 	scopes := []string{"https://graph.microsoft.com/.default"}
 	client, err := msgraphsdk.NewGraphServiceClientWithCredentials(azureClient.Cred, scopes)
 	if err != nil {
@@ -39,7 +41,7 @@ func EnsureTenantCreationRestricted() string {
 	authPolicy, err := client.Policies().AuthorizationPolicy().Get(context.Background(), nil)
 	if err != nil {
 		log.Printf("└─[ERROR] Failed to get authorization policy: %v", err)
-		audit.PrintOdataError(err) // Print detailed error information
+		audit.PrintOdataError(err)
 		return "NA"
 	}
 
@@ -58,20 +60,20 @@ func EnsureTenantCreationRestricted() string {
 		return "NA"
 	}
 
-	allowedToCreateTenants := defaultPermissions.GetAllowedToCreateTenants()
-	log.Printf("  └─[DEBUG] AllowedToCreateTenants: %v", allowedToCreateTenants)
+	allowedToCreateApps := defaultPermissions.GetAllowedToCreateApps()
+	log.Printf("  └─[DEBUG] AllowedToCreateApps: %v", allowedToCreateApps)
 
-	isRestricted := !*allowedToCreateTenants
+	isRestricted := !*allowedToCreateApps
 
-	log.Printf("  └─[*] Checking tenant creation restriction")
-	log.Printf("    └─[%s] Restrict non-admin users from creating tenants: %t",
-		audit.GetStatus(isRestricted), isRestricted)
+	log.Printf("  └─[*] Checking application registration restriction")
+	log.Printf("    └─[%s] Users can register applications: %t",
+		audit.GetStatus(!isRestricted), *allowedToCreateApps)
 
 	if isRestricted {
-		log.Println("└─[PASS] Non-admin users are restricted from creating tenants")
+		log.Println("└─[PASS] Users cannot register applications")
 		return "PASS"
 	} else {
-		log.Println("└─[FAIL] Non-admin users are allowed to create tenants")
+		log.Println("└─[FAIL] Users are allowed to register applications")
 		return "FAIL"
 	}
 }
