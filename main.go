@@ -6,8 +6,8 @@ import (
 	"log"
 	"os"
 
-	"azure-security-hub/audit/microsoftdefenderforcloud"
 	"azure-security-hub/audit/microsoftentraid"
+	"azure-security-hub/audit/storageaccounts"
 	"azure-security-hub/utils"
 
 	"github.com/spf13/cobra"
@@ -71,22 +71,22 @@ var restrictAppRegistrationCmd = &cobra.Command{
 	},
 }
 
-var ensureAutoProvisioningLogAnalyticsAgentCmd = &cobra.Command{
-	Use:     "ensure-auto-provisioning-log-analytics-agent",
-	Short:   "Ensure Auto provisioning of 'Log Analytics agent for Azure VMs' is Set to 'On'",
-	Aliases: []string{"cis.3.0.0-security.3.1.1.1"},
+var ensureSecureTransferRequiredCmd = &cobra.Command{
+	Use:     "ensure-secure-transfer-required",
+	Short:   "Ensure that 'Secure transfer required' is set to 'Enabled'",
+	Aliases: []string{"cis.3.0.0-storage-accounts.4.1"},
 	Run: func(cmd *cobra.Command, args []string) {
-		result := microsoftdefenderforcloud.EnsureAutoProvisioningLogAnalyticsAgent()
-		log.Printf("[Microsoft Defender for Cloud] %s : %s", cmd.Short, result)
+		result := storageaccounts.EnsureSecureTransferRequired()
+		log.Printf("[Storage Accounts] %s : %s", cmd.Short, result)
 	},
 }
 
 // init is called before the main function
 func init() {
 	rootCmd.AddCommand(loginCmd)
-	rootCmd.AddCommand(restrictTenantCreationCmd)                  // 2.3
-	rootCmd.AddCommand(restrictAppRegistrationCmd)                 // 2.14
-	rootCmd.AddCommand(ensureAutoProvisioningLogAnalyticsAgentCmd) // 3.1.1.1
+	rootCmd.AddCommand(restrictTenantCreationCmd)       // 2.3
+	rootCmd.AddCommand(restrictAppRegistrationCmd)      // 2.14
+	rootCmd.AddCommand(ensureSecureTransferRequiredCmd) // 4.1
 }
 
 // main is the entry point of the application
