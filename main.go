@@ -51,6 +51,7 @@ var loginCmd = &cobra.Command{
 	},
 }
 
+// 2.3
 var restrictTenantCreationCmd = &cobra.Command{
 	Use:     "restrict-tenant-creation",
 	Short:   "Ensure that 'Restrict non-admin users from creating tenants' is set to 'Yes'",
@@ -61,6 +62,7 @@ var restrictTenantCreationCmd = &cobra.Command{
 	},
 }
 
+// 2.14
 var restrictAppRegistrationCmd = &cobra.Command{
 	Use:     "restrict-app-registration",
 	Short:   "Ensure That 'Users Can Register Application' Is Set to 'No'",
@@ -71,6 +73,7 @@ var restrictAppRegistrationCmd = &cobra.Command{
 	},
 }
 
+// 4.1
 var ensureSecureTransferRequiredCmd = &cobra.Command{
 	Use:     "ensure-secure-transfer-required",
 	Short:   "Ensure that 'Secure transfer required' is set to 'Enabled'",
@@ -81,12 +84,24 @@ var ensureSecureTransferRequiredCmd = &cobra.Command{
 	},
 }
 
+// 4.2
+var ensureInfrastructureEncryptionCmd = &cobra.Command{
+	Use:     "ensure-infrastructure-encryption",
+	Short:   "Ensure that 'Enable Infrastructure Encryption' for Storage Accounts is Set to 'enabled'",
+	Aliases: []string{"storage.4.2"},
+	Run: func(cmd *cobra.Command, args []string) {
+		result := storageaccounts.EnsureInfrastructureEncryption()
+		log.Printf("[Storage Accounts] %s %s", cmd.Short, result)
+	},
+}
+
 // init is called before the main function
 func init() {
 	rootCmd.AddCommand(loginCmd)
-	rootCmd.AddCommand(restrictTenantCreationCmd)       // 2.3
-	rootCmd.AddCommand(restrictAppRegistrationCmd)      // 2.14
-	rootCmd.AddCommand(ensureSecureTransferRequiredCmd) // 4.1
+	rootCmd.AddCommand(restrictTenantCreationCmd)         // 2.3
+	rootCmd.AddCommand(restrictAppRegistrationCmd)        // 2.14
+	rootCmd.AddCommand(ensureSecureTransferRequiredCmd)   // 4.1
+	rootCmd.AddCommand(ensureInfrastructureEncryptionCmd) // 4.2
 }
 
 // main is the entry point of the application

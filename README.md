@@ -47,7 +47,8 @@ Azure Security Hub is a CLI tool designed to inspect and monitor the security po
 
 **4 Storage Accounts**
 
-- [ ] 4.1 Ensure that 'Secure transfer required' is set to 'Enabled'
+- [x] 4.1 Ensure that 'Secure transfer required' is set to 'Enabled'
+- [x] 4.2 Ensure that 'Enable Infrastructure Encryption' for Each Storage Account in Azure Storage is Set to 'enabled'
 
 **5 Database Services**
 
