@@ -6,6 +6,12 @@ Azure Security Hub is a CLI tool designed to inspect and monitor the security po
 
 ### CIS Microsoft Azure Foundations Benchmark v3.0.0 (09-05-2024)
 
+**1 Introduction**
+
+- **1.1 CIS Microsoft Azure Foundations Benchmarks**
+- **1.2 CIS Microsoft Azure Service Category Benchmarks**
+- **1.3 Multiple Methods of Audit and Remediation**
+
 **2 Identity**
 
 - **2.1 Security Defaults (Per-User MFA)**
@@ -35,6 +41,17 @@ Azure Security Hub is a CLI tool designed to inspect and monitor the security po
 - (Manual) 2.13 Ensure 'User consent for applications' Is Set To 'Allow for Verified Applications'
 - [x] 2.14 Ensure That 'Users Can Register Application' Is Set to 'No'
 - [x] 2.15 Ensure That 'Guest users access restrictions' is set to 'Guest user access is restricted to properties and memberships of their own directory objects'
+- [ ] 2.16 Ensure that 'Guest invite restrictions' is set to 'Only users assigned to specific admin roles can invite guest users'
+- (Manual) 2.17 Ensure That 'Restrict access to Microsoft Entra admin center' is Set to 'Yes'
+- (Manual) 2.18 Ensure that 'Restrict user ability to access groups features in the Access Pane' is Set to 'Yes'
+- (Manual) 2.19 Ensure that 'Users can create security groups in Azure portals, API or PowerShell' is set to 'No'
+- (Manual) 2.20 Ensure that 'Owners can manage group membership requests in My Groups' is set to 'No'
+- (Manual) 2.21 Ensure that 'Users can create Microsoft 365 groups in Azure portals, API or PowerShell' is set to 'No'
+- (Manual) 2.22 Ensure that 'Require Multifactor Authentication to register or join devices with Microsoft Entra' is set to 'Yes'
+- [ ] 2.23 Ensure That No Custom Subscription Administrator Roles Exist
+- (Manual) 2.24 Ensure a Custom Role is Assigned Permissions for Administering Resource Locks
+- (Manual) 2.25 Ensure That 'Subscription leaving Microsoft Entra tenant' and 'Subscription entering Microsoft Entra tenant' Is Set To 'Permit no one'
+- (Manual) 2.26 Ensure fewer than 5 users have global administrator assignment
 
 **3 Security**
 

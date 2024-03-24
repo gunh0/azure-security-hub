@@ -65,6 +65,19 @@
             ]
         },
         {
+            "Id": "2.16",
+            "Title": "Ensure that 'Guest invite restrictions' is set to 'Only users assigned to specific admin roles can invite guest users'",
+            "Checks": [],
+            "Attributes": [
+                {
+                    "Section1": "2 Identity",
+                    "AssessmentStatus": "Automated",
+                    "ApplicableProfiles": "Level 2",
+                    "Description": "Restrict invitations to users with specific administrative roles only."
+                }
+            ]
+        },
+        {
             "Id": "3.1.1.1",
             "Title": "Ensure that Auto provisioning of 'Log Analytics agent for Azure VMs' is Set to 'On'",
             "Checks": [],
