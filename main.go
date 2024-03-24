@@ -58,7 +58,7 @@ var restrictTenantCreationCmd = &cobra.Command{
 	Aliases: []string{"cis.3.0.0-identity.2.3"},
 	Run: func(cmd *cobra.Command, args []string) {
 		result := microsoftentraid.EnsureTenantCreationRestricted()
-		log.Printf("[Microsoft Entra ID] %s : %s", cmd.Short, result)
+		log.Printf("[Microsoft Entra ID] (%s) : %s", result, cmd.Short)
 	},
 }
 
@@ -69,7 +69,18 @@ var restrictAppRegistrationCmd = &cobra.Command{
 	Aliases: []string{"cis.3.0.0-identity.2.14"},
 	Run: func(cmd *cobra.Command, args []string) {
 		result := microsoftentraid.EnsureAppRegistrationRestricted()
-		log.Printf("[Microsoft Entra ID] %s : %s", cmd.Short, result)
+		log.Printf("[Microsoft Entra ID] (%s) : %s", result, cmd.Short)
+	},
+}
+
+// 2.15
+var restrictGuestUserAccessCmd = &cobra.Command{
+	Use:     "restrict-guest-user-access",
+	Short:   "Ensure That 'Guest users access restrictions' is set to 'Guest user access is restricted to properties and memberships of their own directory objects'",
+	Aliases: []string{"cis.3.0.0-identity.2.15"},
+	Run: func(cmd *cobra.Command, args []string) {
+		result := microsoftentraid.EnsureGuestUserAccessRestricted()
+		log.Printf("[Microsoft Entra ID] (%s) : %s", result, cmd.Short)
 	},
 }
 
@@ -80,7 +91,7 @@ var ensureSecureTransferRequiredCmd = &cobra.Command{
 	Aliases: []string{"cis.3.0.0-storage-accounts.4.1"},
 	Run: func(cmd *cobra.Command, args []string) {
 		result := storageaccounts.EnsureSecureTransferRequired()
-		log.Printf("[Storage Accounts] %s : %s", cmd.Short, result)
+		log.Printf("[Storage Accounts] (%s) : %s", result, cmd.Short)
 	},
 }
 
@@ -91,7 +102,7 @@ var ensureInfrastructureEncryptionCmd = &cobra.Command{
 	Aliases: []string{"storage.4.2"},
 	Run: func(cmd *cobra.Command, args []string) {
 		result := storageaccounts.EnsureInfrastructureEncryption()
-		log.Printf("[Storage Accounts] %s %s", cmd.Short, result)
+		log.Printf("[Storage Accounts] (%s) : %s", result, cmd.Short)
 	},
 }
 
@@ -100,6 +111,7 @@ func init() {
 	rootCmd.AddCommand(loginCmd)
 	rootCmd.AddCommand(restrictTenantCreationCmd)         // 2.3
 	rootCmd.AddCommand(restrictAppRegistrationCmd)        // 2.14
+	rootCmd.AddCommand(restrictGuestUserAccessCmd)        // 2.15
 	rootCmd.AddCommand(ensureSecureTransferRequiredCmd)   // 4.1
 	rootCmd.AddCommand(ensureInfrastructureEncryptionCmd) // 4.2
 }

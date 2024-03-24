@@ -50,6 +50,21 @@
             ]
         },
         {
+            "Id": "2.15",
+            "Title": "Ensure That 'Guest users access restrictions' is set to 'Guest user access is restricted to properties and memberships of their own directory objects'",
+            "Checks": [
+                "restrict-guest-user-access"
+            ],
+            "Attributes": [
+                {
+                    "Section1": "2 Identity",
+                    "AssessmentStatus": "Automated",
+                    "ApplicableProfiles": "Level 1",
+                    "Description": "Limit guest user permissions."
+                }
+            ]
+        },
+        {
             "Id": "3.1.1.1",
             "Title": "Ensure that Auto provisioning of 'Log Analytics agent for Azure VMs' is Set to 'On'",
             "Checks": [],
@@ -94,7 +109,9 @@
         {
             "Id": "4.2",
             "Title": "Ensure that 'Enable Infrastructure Encryption' for Each Storage Account in Azure Storage is Set to 'enabled'",
-            "Checks": ["ensure-infrastructure-encryption"],
+            "Checks": [
+                "ensure-infrastructure-encryption"
+            ],
             "Attributes": [
                 {
                     "Section1": "4 Storage Accounts",

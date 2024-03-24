@@ -34,6 +34,7 @@ Azure Security Hub is a CLI tool designed to inspect and monitor the security po
 - (Manual) 2.12 Ensure `User consent for applications` is set to `Do not allow user consent`
 - (Manual) 2.13 Ensure 'User consent for applications' Is Set To 'Allow for Verified Applications'
 - [x] 2.14 Ensure That 'Users Can Register Application' Is Set to 'No'
+- [x] 2.15 Ensure That 'Guest users access restrictions' is set to 'Guest user access is restricted to properties and memberships of their own directory objects'
 
 **3 Security**
 
